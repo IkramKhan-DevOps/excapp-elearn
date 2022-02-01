@@ -1,2 +1,47 @@
-# pw-elearn
+<p align="center">
+  <a href="https://exarth.com/"><img src="https://exarth.com/static/exarth/theme/logo-red-1000.svg" height="150"></a>
+</p><hr>
+
+# ELearn
+## Lets learn together
+
 Learning Management System with Features same to Google Class Rooms and Evernote
+
+## Features
+ - 
+
+## Tech
+
+These technologies are used in projects to work properly:
+
+- [HTML5] - HTML enhanced for web apps!
+- [CSS3] - Awesome Designing
+- [Javascript] - Client Side Scripts
+- [JQuerry] - great UI boilerplate for modern web apps
+- [Python] - World Top Language for Top Developers
+- [Django] - Web Framework for perfectionists
+- [SQlite3] - the streaming build system
+
+## Installation
+
+Application requires [Python > 3.1](https://www.python.org/downloads/release/python-380/) to run, please install Python first
+Install the dependencies and devDependencies and start the server.
+
+```sh
+cd directory
+pip install -r requirements.txt
+py manage.py runserver
+```
+
+#### How to run
+Open terminal and run the command below, make sure all requirements are installed previously
+```sh
+cd directory
+py manage.py runserver
+```
+Follow to link to view your application [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+## License
+MIT
+
+### Resources
+https://exarth.com/
