@@ -42,7 +42,12 @@
 <div class="site-wrapper overflow-hidden">
 
     {% block header %}
-        {% include 'website/include/header.html' %}
+        {% if home %}
+            {% include 'website/include/header_b.html' %}
+        {% else %}
+            {% include 'website/include/header.html' %}
+        {% endif %}
+
     {% endblock %}
 
     {% block content %}
