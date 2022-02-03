@@ -1,10 +1,7 @@
-import notifications.urls
-from django.conf.urls import url
+# import notifications.urls
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.auth import views as auth_views
 from django.urls import path, include, re_path
-from src.accounts.views import GoogleLoginView, CustomRegisterAccountView
 from .settings import DEBUG, MEDIA_ROOT, MEDIA_URL
 
 urlpatterns = [
@@ -20,16 +17,6 @@ urlpatterns = [
     # PORTALS ---------------------------------------------------------- #
     path('a/', include('src.portals.admins.urls', namespace='admins')),
     path('c/', include('src.portals.customer.urls', namespace='customer')),
-
-    # REST API -------------------------------------------------------------------------------------------
-    path('auth/', include('dj_rest_auth.urls')),
-    path('auth/registration/', CustomRegisterAccountView.as_view(), name='account_create_new_user'),
-    path('auth/google/', GoogleLoginView.as_view(), name='google-login-view'),
-
-    path('api/', include('src.api.urls', namespace='api')),
-
-    # NOTIFICATIONS APPLICATION ---------------------------------------------------------------------------------
-    url('^inbox/notifications/', include(notifications.urls, namespace='notifications')),
 
 ]
 
