@@ -43,12 +43,6 @@ INSTALLED_APPS = [
     'ckeditor',
     'django_filters',
 
-    'rest_framework',
-    'rest_framework.authtoken',
-
-    'dj_rest_auth',
-    'dj_rest_auth.registration',
-
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -57,7 +51,6 @@ INSTALLED_APPS = [
     # CUSTOM APPS
     'src.website',
     'src.accounts',
-    'src.api',
 
     'src.portals.admins',
     'src.portals.customer',
@@ -77,29 +70,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ],
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
-    ],
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-}
-
-REST_AUTH_REGISTER_SERIALIZERS = {
-    'REGISTER_SERIALIZER': 'src.accounts.serializers.RegisterSerializerRestAPI',
-}
-
 AUTHENTICATION_BACKENDS = [
-    # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
-    # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
@@ -177,24 +149,6 @@ LOGIN_REDIRECT_URL = '/accounts/cross-auth/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 """ EMAIL SYSTEM ---------------------------------------------------------------------------------"""
-
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # During development only
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_USE_TLS = True
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = 'donald.duck0762@gmail.com'
-# EMAIL_HOST_PASSWORD = 'hiwmyyujrggyjsgb'
-# EMAIL_PORT = 587
-# DEFAULT_FROM_EMAIL = 'TaskTok-Team <help@tasktok.app>'
-
-# EMAIL_HOST = 'smtp.office365.com'
-# EMAIL_HOST_USER = 'support@tasktok.app'
-# EMAIL_HOST_PASSWORD = 'poiu098765'
-# SERVER_EMAIL = EMAIL_HOST_USER
-# EMAIL_PORT = 587
-# EMAIL_USE_SSL = False
-# EMAIL_USE_TLS = True
-# DEFAULT_FROM_EMAIL = 'TaskTok-Team <support@tasktok.app>'
 
 """ RESIZER IMAGE --------------------------------------------------------------------------------"""
 DJANGORESIZED_DEFAULT_SIZE = [1920, 1080]
