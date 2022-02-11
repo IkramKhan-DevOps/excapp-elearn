@@ -1,4 +1,8 @@
-from django.views.generic import TemplateView, ListView
+from django.core.paginator import Paginator
+from django.views.generic import TemplateView, ListView, DetailView
+
+from src.website.models import Article, ArticleCategory, ArticleTag
+from src.website.templates.website.forms import ArticleFilter
 
 
 class HomeView(TemplateView):
@@ -37,9 +41,35 @@ class Error404View(TemplateView):
 class BlogView(TemplateView):
     template_name = 'website/blog.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(BlogView, self).get_context_data(**kwargs)
+        context['article_categories'] = ArticleCategory.objects.all()
+        context['article_tags'] = ArticleTag.objects.all()
+        context['article_recents'] = Article.objects.all()[:5]
 
-class BlogDetailView(TemplateView):
+        article_filter = ArticleFilter(self.request.GET, queryset=Article.objects.all())
+        context['article_filter_form'] = article_filter.form
+
+        paginator = Paginator(article_filter.qs, 50)
+        page_number = self.request.GET.get('page')
+        article_page_object = paginator.get_page(page_number)
+
+        context['article_list'] = article_page_object
+
+        return context
+
+
+class BlogDetailView(DetailView):
+    queryset = Article.objects.all()
     template_name = 'website/blog-details.html'
+    slug_url_kwarg = 'slug'
+
+    def get_context_data(self, **kwargs):
+        context = super(BlogDetailView, self).get_context_data(**kwargs)
+        context['article_categories'] = ArticleCategory.objects.all()
+        context['article_tags'] = ArticleTag.objects.all()
+        context['article_recents'] = Article.objects.all()[:5]
+        return context
 
 
 class ComingSoonView(TemplateView):

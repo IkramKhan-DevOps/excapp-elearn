@@ -56,7 +56,7 @@ class Article(models.Model):
     detailed_description = RichTextField(null=False, blank=False)
     posted_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     slug = models.SlugField(unique=True, null=False, blank=True)
-    keywords = models.CharField(max_length=200, null=True, blank=True, help_text="Use , to separate your keywords")
+    keywords = models.ManyToManyField(ArticleTag)
 
     read_time = models.PositiveIntegerField(null=False, blank=False, default=0)
     likes = models.PositiveIntegerField(null=False, blank=False, default=0)
@@ -67,6 +67,7 @@ class Article(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
+        ordering = ['-id']
         verbose_name = 'Article'
         verbose_name_plural = 'Articles'
 

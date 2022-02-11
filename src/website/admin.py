@@ -1,6 +1,5 @@
 from django.contrib import admin
 from django.utils.html import format_html
-
 from src.website.models import Article, ArticleCategory, ArticleTag
 
 
@@ -34,7 +33,7 @@ class ArticleAdmin(admin.ModelAdmin):
     def author(self, obj):
         return format_html(
             '<a href="/admin/accounts/user/{}/change/">{}</a>',
-            obj.posted_by.user.pk, obj.posted_by.user.username
+            obj.posted_by.pk, obj.posted_by.username
         )
 
 
