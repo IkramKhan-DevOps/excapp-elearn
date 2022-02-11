@@ -2,7 +2,7 @@
 {% load custom_tags %}
 {% load static %}
 
-{% block title %}
+{% block sub_title %}
     Blog
 {% endblock %}
 
@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="breadcrumb__navigation">
-            <p class="breadcrumb__navigation--text"><a class="d-block heading-dark" href="/">Blog</a><span
+            <p class="breadcrumb__navigation--text"><a class="d-block heading-dark" href="/">Home</a><span
                     class="dot"></span><span class="page-text">Our Blog</span></p>
         </div>
     </div>
@@ -64,7 +64,7 @@
                                     {% for article_recent in article_recents %}
                                         <div class="single-post" data-aos="fade-up" data-aos-delay="150"
                                              data-aos-duration="800">
-                                            <a href="blog-details.html" class="d-block">
+                                            <a href="{% url 'website:blog-detail' article_recent.slug %}" class="d-block">
                                                 <div class="card-post">
                                                     <div class="post-img">
                                                         {% if article_recent.thumbnail %}

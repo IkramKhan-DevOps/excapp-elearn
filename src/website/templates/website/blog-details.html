@@ -1,8 +1,8 @@
 {% extends 'website/base.html' %}
 {% load static %}
 
-{% block title %}
-    Name
+{% block sub_title %}
+    {{ object.title }}
 {% endblock %}
 
 {% block content %}
@@ -19,9 +19,8 @@
             </div>
         </div>
         <div class="breadcrumb__navigation">
-            <p class="breadcrumb__navigation--text"><a class="d-block heading-dark"
-                                                       href={% url 'website:blog' %}/">Blog</a><span
-                    class="dot"></span><span class="page-text">Blog Detail</span></p>
+            <p class="breadcrumb__navigation--text"><a class="d-block heading-dark" href="{% url 'website:blog' %}">Blog</a><span
+                    class="dot"></span><span class="page-text">Blog Details</span></p>
         </div>
     </div>
 
@@ -30,46 +29,6 @@
             <div class="blog-details-area__wrapper">
                 <div class="row justify-content-center">
                     <div class="col-lg-4 col-md-8 col-xs-10 order-lg-2">
-                        <div class="blog-content-area__post">
-                            <div class="blog-post-box">
-                                <h3 class="content-title">Recent Post</h3>
-                                <div class="blog-post-box__single-post overflow-hidden">
-
-                                    {% if article_recents %}
-                                        {% for article_recent in article_recents %}
-                                            <div class="single-post" data-aos="fade-up" data-aos-delay="150"
-                                                 data-aos-duration="800">
-                                                <a href="blog-details.html" class="d-block">
-                                                    <div class="card-post">
-                                                        <div class="post-img">
-                                                            {% if article_recent.thumbnail %}
-                                                                <img src="{{ article_recent.thumbnail.url }}"
-                                                                     alt="card-img">
-                                                            {% else %}
-                                                                <img src="{% static 'core/images/no-file.jpg' %}"
-                                                                     alt="card-img">
-                                                            {% endif %}
-                                                        </div>
-                                                        <div class="post-content">
-                                                            <div class="meta">
-                                                    <span><img src="{% static 'website/image/svg/calendar-2.svg' %}"
-                                                               alt='calendar'/> {{ article_recent.created_on }}</span>
-                                                            </div>
-                                                            <h6 class="post-title">{{ article_recent.title }}</h6>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        {% endfor %}
-                                    {% else %}
-                                        <p class="text-danger mt-4">
-                                            <b><i class="fa fa-exclamation-circle"></i> Articles not found.</b>
-                                        </p>
-                                    {% endif %}
-
-                                </div>
-                            </div>
-                        </div>
                         <div class="blog-content-area__categories">
                             <div class="categories-block">
                                 <h6 class="content-title heading-dark">Categories</h6>
@@ -203,7 +162,7 @@
                     {% for article_recent in article_recents %}
 
                         <div class="col-md-6 col-xl-4" data-aos="fade-up" data-aos-delay="150" data-aos-duration="800">
-                            <a href="{% url 'website:blog-detail' article_recent.pk %}" class="d-block">
+                            <a href="{% url 'website:blog-detail' article_recent.slug %}" class="d-block">
                                 <div class="card-blog card-blog--02">
                                     <div class="card-image">
 

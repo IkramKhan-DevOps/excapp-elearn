@@ -211,6 +211,6 @@ class UserCustomAdmin(admin.ModelAdmin):
 # CUSTOM USER
 admin.site.register(User, UserCustomAdmin)
 
-admin.site.site_header = "EPay - Admin"
-admin.site.site_title = "EPay - Admin"
-admin.site.index_title = "EPay - Administration"
+admin.site.site_header = "EPay | root access"
+admin.site.site_title = "EPay"
+admin.site.index_title = "Dashboard"
