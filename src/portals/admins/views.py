@@ -14,7 +14,6 @@ admin_nocache_decorators = [login_required, user_passes_test(lambda u: u.is_supe
 """  INIT ------------------------------------------------------------------------- """
 
 
-@method_decorator(admin_decorators, name='dispatch')
 class DashboardView(TemplateView):
     template_name = 'admins/dashboard.html'
 

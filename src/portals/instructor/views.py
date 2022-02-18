@@ -6,18 +6,16 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.views.generic import TemplateView, ListView, DetailView,UpdateView, CreateView, DeleteView
 
-from src.accounts.decorators import customer_required
 from src.portals.admins.models import Course
 
 User = get_user_model()
 
-customer_decorators = [login_required, customer_required]
-customer_nocache_decorators = [login_required, customer_required, never_cache]
+customer_decorators = [login_required]
+customer_nocache_decorators = [login_required, never_cache]
 
 """  VIEWS ================================================================================= """
 
 
-@method_decorator(customer_required, name='dispatch')
 class DashboardView(TemplateView):
     template_name = 'instructor/dashboard.html'
 

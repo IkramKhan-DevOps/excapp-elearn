@@ -1,80 +1,84 @@
 {% extends 'core/base.html' %}
-{% load custom_tags %}
+{% load static %}
 
 {% block base_title %}
     courses
 {% endblock %}
 
-{% block page_heading %}
-    courses
-{% endblock %}
 
 {% block content %}
 
-    <div class="row mb-2">
-        <div class="col-12">
-            <a href="{% url 'admins:course-add' %}" class="btn btn-success">Add Course</a>
-        </div>
-    </div>
-
     <div class="row">
-        <div class="col-12">
 
+        <div class="col-9">
+
+            {% if object_list %}
+                <div class="row">
+                    {% for object in object_list %}
+                        <div class="col-xl-4 col-sm-6">
+                        <div class="card p-0">
+                            <div class="card-header p-0">
+                                <div class="product-img position-relative">
+                                    <img src="{% static "portals/images/classimage.jpg" %}" alt=""
+                                         class="img-fluid mx-auto d-block">
+                                </div>
+                            </div>
+                            <div class="card-body">
+
+                                <div class=" text-center">
+                                    <h5 class="mb-1 text-truncate">
+                                        <a href="#" class="text-dark"><b>{{ object.name }}</b></a>
+                                    </h5>
+                                    <p class="my-0">
+                                        {% if object.is_paid %}
+                                            <span class="badge badge-pill badge-soft-success font-size-12">Paid</span>
+                                        {% else %}
+                                            <span class="badge badge-pill badge-soft-danger font-size-12">Un Paid</span>
+                                        {% endif %}
+                                    </p>
+
+                                </div>
+                            </div>
+                            <div class="card-footer bg-white border-top">
+                                <div class="row justify-content-center text-center">
+                                    <div class="col border-right">
+                                        <h4 class="mb-0">
+                                            <a href="{% url 'admins:course-detail' object.pk %}"><i class="fa fa-eye"></i></a>
+                                        </h4>
+                                    </div>
+                                    <div class="col border-right">
+                                        <h4 class="mb-0">
+                                            <a href="{% url 'admins:course-update' object.pk %}"><i class="fa fa-edit"></i></a>
+                                        </h4>
+                                    </div>
+                                    <div class="col">
+                                        <h4 class="mb-0">
+                                            <a href="#"><i class="fa fa-clock"></i></a>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="mb-0 text-danger"><b><i class="fa fa-exclamation-circle"></i> No Courses registered yet!</b></p>
+            {% endif %}
+
+        </div>
+
+        <div class="col-3">
             <div class="card">
                 <div class="card-body">
-                    {% if object_list %}
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-centered table-nowrap mb-0">
-                                <thead class="thead-light">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Section</th>
-                                    <th>Subject</th>
-                                    <th>room</th>
-                                    <th>Instructor</th>
-                                    <th>Created</th>
-                                    <th>Paid</th>
-                                    <th>Active</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                {% for object in object_list %}
-
-                                    <tr>
-                                        <td>{{ object.id }}</td>
-                                        <td>{{ object.name }}</td>
-                                        <td>{{ object.section }}</td>
-                                        <td>{{ object.subject }}</td>
-                                        <td>{{ object.room }}</td>
-                                        <td>{{ object.instructor }}</td>
-                                        <td>{{ object.created_on }}</td>
-                                        <td>{{ object.is_paid }}</td>
-                                        <td>{{ object.is_active }}</td>
-                                        <td>
-                                            <a href="{% url 'admins:course-detail' object.pk %}">
-                                                <i class="fa fa-eye"></i>
-                                            </a>
-                                            <a href="{% url 'admins:course-update' object.pk %}">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-
-                                {% endfor %}
-
-                                </tbody>
-                            </table>
-                        </div>
-                    {% else %}
-                        <b class="text-danger"> No courses registered yet!</b>
-                    {% endif %}
+                    <p class="text-muted small">You can register as much courses you need, to activate the course you should have to pay.</p>
+                    <a href="{% url 'instructor:course-add' %}" class="btn btn-sm btn-block btn-primary">
+                        <i class="fa fa-plus"></i> New Course
+                    </a>
                 </div>
             </div>
-
         </div>
+
     </div>
 
 {% endblock %}

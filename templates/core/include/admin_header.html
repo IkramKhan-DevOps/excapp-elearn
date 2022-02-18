@@ -8,8 +8,20 @@
     </a>
 </li>
 
+{# USERS #}
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-components" role="button"
+       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="bx bx-collection mr-2"></i>Users
+        <div class="arrow-down"></div>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="topnav-components">
+        <a href="#" class="dropdown-item">View All</a>
+    </div>
+</li>
 
-{# Apps #}
+
+{# COURSES #}
 <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-pages" role="button"
        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -18,32 +30,19 @@
     </a>
     <div class="dropdown-menu" aria-labelledby="topnav-pages">
 
-        <a href="#" class="dropdown-item">Quiz Builder</a>
-        <a href="#" class="dropdown-item">Question
-            Builder</a>
-    </div>
-</li>
-
-
-{# FEATURES #}
-<li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-components" role="button"
-       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="bx bx-collection mr-2"></i>Features
-        <div class="arrow-down"></div>
-    </a>
-    <div class="dropdown-menu" aria-labelledby="topnav-components">
-        <a href="#" class="dropdown-item">Users</a>
+        <a href="{% url 'admins:course' %}" class="dropdown-item">Courses</a>
+        <a href="#" class="dropdown-item">Assignments</a>
         <a href="#" class="dropdown-item">Quizzes</a>
+        <a href="#" class="dropdown-item">Polls</a>
     </div>
 </li>
 
 {#DASHBOARD#}
-<li class="nav-item">
-    <a class="nav-link dropdown-toggle arrow-none" href="#">
-        <i class="fa fa-child mr-2"></i>Parental Control
-    </a>
-</li>
+{#<li class="nav-item">#}
+{#    <a class="nav-link dropdown-toggle arrow-none" href="#">#}
+{#        <i class="fa fa-child mr-2"></i>Parental Control#}
+{#    </a>#}
+{#</li>#}
 
 
 {# ------------------------------------------------------------------------------------------------------------------ #}
