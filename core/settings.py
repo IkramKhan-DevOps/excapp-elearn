@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'src.accounts',
 
     'src.portals.admins',
-    'src.portals.customer',
+    'src.portals.instructor',
 
     # END
 

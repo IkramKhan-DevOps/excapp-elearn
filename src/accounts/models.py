@@ -25,7 +25,8 @@ class User(AbstractUser):
         help_text='size of logo must be 100*100 and format must be png image file', crop=['middle', 'center']
     )
     phone_number = models.CharField(max_length=30, null=True, blank=True)
-    is_customer = models.BooleanField(default=True)
+    is_student = models.BooleanField(default=True)
+    is_instructor = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-id']

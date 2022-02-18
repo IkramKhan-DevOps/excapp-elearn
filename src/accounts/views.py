@@ -32,7 +32,7 @@ class CrossAuthView(View):
         if request.user.is_superuser:
             return redirect('admins:dashboard')
         else:
-            return redirect('customer:dashboard')
+            return redirect('instructor:dashboard')
 
 
 @method_decorator(login_required, name='dispatch')
@@ -68,23 +68,5 @@ class LogoutView(View):
         logout(request)
         return redirect('accounts:administration-login')
 
-
-class CustomRegisterAccountView(APIView):
-    serializer_class = CustomRegisterAccountSerializer
-    permission_classes = [permissions.AllowAny]
-
-    def post(self, request):
-        data = {}
-        status_code = status.HTTP_400_BAD_REQUEST
-        serializer = CustomRegisterAccountSerializer(data=request.data)
-
-        if serializer.is_valid():
-            user = serializer.save()
-            EmailAddress.objects.create(user=user, email=user.email, primary=True, verified=False)
-            data = {'success': 'Account created successfully'}
-            status_code = status.HTTP_201_CREATED
-        else:
-            data = serializer.errors
-        return Response(data=data, status=status_code)
 
 

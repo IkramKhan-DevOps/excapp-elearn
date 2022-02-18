@@ -3,7 +3,7 @@ from .views import (
     DashboardView
 )
 
-app_name = "customer"
+app_name = "instructor"
 urlpatterns = [
 
     path('', DashboardView.as_view(), name='dashboard'),

@@ -1,0 +1,81 @@
+{% extends 'core/base.html' %}
+{% load custom_tags %}
+
+{% block base_title %}
+    courses
+{% endblock %}
+
+{% block page_heading %}
+    courses
+{% endblock %}
+
+{% block content %}
+
+    <div class="row mb-2">
+        <div class="col-12">
+            <a href="{% url 'admins:course-add' %}" class="btn btn-success">Add Course</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+
+            <div class="card">
+                <div class="card-body">
+                    {% if object_list %}
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-centered table-nowrap mb-0">
+                                <thead class="thead-light">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Section</th>
+                                    <th>Subject</th>
+                                    <th>room</th>
+                                    <th>Instructor</th>
+                                    <th>Created</th>
+                                    <th>Paid</th>
+                                    <th>Active</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                {% for object in object_list %}
+
+                                    <tr>
+                                        <td>{{ object.id }}</td>
+                                        <td>{{ object.name }}</td>
+                                        <td>{{ object.section }}</td>
+                                        <td>{{ object.subject }}</td>
+                                        <td>{{ object.room }}</td>
+                                        <td>{{ object.instructor }}</td>
+                                        <td>{{ object.created_on }}</td>
+                                        <td>{{ object.is_paid }}</td>
+                                        <td>{{ object.is_active }}</td>
+                                        <td>
+                                            <a href="{% url 'admins:course-detail' object.pk %}">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                            <a href="{% url 'admins:course-update' object.pk %}">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <b class="text-danger"> No courses registered yet!</b>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
