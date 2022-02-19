@@ -47,7 +47,9 @@
         <div class="main-content">
 
             <div class="page-content mt-4">
-                <div class="container-fluid mt-5">
+                <div class="{% block no_container %}
+                     container-fluid
+                {% endblock %} mt-5">
 
                     <div class="row">
                         {% include 'core/include/message.html' %}
