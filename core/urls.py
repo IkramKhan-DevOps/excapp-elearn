@@ -17,6 +17,7 @@ urlpatterns = [
     # PORTALS ---------------------------------------------------------- #
     path('a/', include('src.portals.admins.urls', namespace='admins')),
     path('i/', include('src.portals.instructor.urls', namespace='instructor')),
+    path('s/', include('src.portals.student.urls', namespace='student')),
 
 ]
 

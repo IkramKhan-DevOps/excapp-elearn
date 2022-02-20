@@ -18,15 +18,16 @@
 
     <div class="container my-4">
         <div class="row justify-content-center">
-            <div class="col-sm-8 col-12">
-                <div class="text-center">
-                    <img src="{% static 'images/logo_100.png' %}">
-                    <p class="text-danger mt-1"><b>Cocognito Account Security</b></p>
+            <div class="col-11 col-sm-8">
+
+            {% include 'account/include/head.html' %}
+
+            <div class="card border">
+                <div class="card-header bg-white text-center border-bottom">
+                    <p class="card-title m-0">{% trans "Password Reset" %}</p>
+
                 </div>
-
-                <hr class="border border-danger">
-
-                <div class="card border">
+                <div class="card-body">
                     <div class="card-body">
                         <h1>{% trans "Confirm E-mail Address" %}</h1>
 

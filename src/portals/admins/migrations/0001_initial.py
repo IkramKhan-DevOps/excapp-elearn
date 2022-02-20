@@ -23,13 +23,13 @@ class Migration(migrations.Migration):
                 ('subject', models.CharField(max_length=255)),
                 ('room', models.CharField(help_text='batch name/number or room', max_length=255)),
                 ('Description', models.TextField()),
-                ('is_paid', models.BooleanField(default=False, help_text='If instructor paid for the course please check this.')),
+                ('is_paid', models.BooleanField(default=False, help_text='If student paid for the course please check this.')),
                 ('is_active', models.BooleanField(default=True)),
                 ('created_on', models.DateTimeField(auto_now_add=True)),
-                ('instructor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='instructor', to=settings.AUTH_USER_MODEL)),
+                ('student', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='student', to=settings.AUTH_USER_MODEL)),
             ],
             options={
-                'ordering': ['instructor', '-id'],
+                'ordering': ['student', '-id'],
             },
         ),
         migrations.CreateModel(

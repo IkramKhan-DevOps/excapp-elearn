@@ -38,7 +38,7 @@ class CourseDetailView(DetailView):
 
 class CourseCreateView(CreateView):
     model = Course
-    fields = ['name', 'section', 'subject', 'instructor', 'room', 'description']
+    fields = ['name', 'section', 'subject', 'student', 'room', 'description']
     template_name = 'instructor/course_form.html'
 
     def form_valid(self, form):
@@ -48,7 +48,7 @@ class CourseCreateView(CreateView):
 
 class CourseUpdateView(UpdateView):
     model = Course
-    fields = ['name', 'section', 'subject', 'instructor', 'room', 'description']
+    fields = ['name', 'section', 'subject', 'student', 'room', 'description']
     template_name = 'instructor/course_form.html'
 
     def get_object(self, queryset=None):

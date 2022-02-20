@@ -10,20 +10,20 @@
             <div class="navbar-brand-box">
                 <a href="/" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="{% static 'core/images/logo_100.png' %}" alt="" height="22">
+                        <img src="{% static 'core/images/logo-50.png' %}" alt="">
                     </span>
                     <span class="logo-lg">
-                        <img src="{% static 'core/images/logo_100.png' %}" alt="" height="17">
-                    </span>
+                        <img src="{% static 'core/images/logo-50.png' %}" alt="">
+                    </span> <b class="text-white lead">ELearn</b>
                 </a>
 
                 <a href="/" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{% static 'core/images/logo_100.png' %}" alt="" height="22">
+                        <img src="{% static 'core/images/logo-50.png' %}" alt="">
                     </span>
                     <span class="logo-lg">
-                        <img src="{% static 'core/images/logo_100.png' %}" alt="" height="19">
-                    </span>
+                        <img src="{% static 'core/images/logo-50.png' %}" alt="">
+                    </span> <b class="text-white lead">ELearn</b>
                 </a>
             </div>
 
@@ -138,7 +138,13 @@
             <div class="collapse navbar-collapse" id="topnav-menu-content">
                 <ul class="navbar-nav">
 
-                    {% include 'core/include/moderator_header.html' %}
+                    {% if request.user.is_superuser %}
+                        {% include 'core/include/admin_header.html' %}
+                    {% elif request.user.is_instructor %}
+                        {% include 'core/include/instructor_header.html' %}
+                    {% else %}
+                        {% include 'core/include/student_header.html' %}
+                    {% endif %}
 
                 </ul>
             </div>

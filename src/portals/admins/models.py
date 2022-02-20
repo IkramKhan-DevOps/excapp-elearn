@@ -9,16 +9,16 @@ class Course(models.Model):
     section = models.CharField(max_length=255, null=False, blank=False)
     subject = models.CharField(max_length=255, null=False, blank=False)
     room = models.CharField(max_length=255, null=False, blank=False, help_text="batch name/number or room")
-    instructor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='instructor', blank=True)
+    instructor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='student', blank=True)
     description = models.TextField()
     students = models.ManyToManyField(User, through='Enroll', related_name='students')
 
-    is_paid = models.BooleanField(default=False, help_text="If instructor paid for the course please check this.")
+    is_paid = models.BooleanField(default=False, help_text="If student paid for the course please check this.")
     is_active = models.BooleanField(default=True)
     created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['instructor', '-id']
+        ordering = ['-id']
 
     def __str__(self):
         return self.name

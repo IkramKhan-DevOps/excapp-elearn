@@ -14,11 +14,7 @@ DEBUG = True
 SERVER = False
 
 if SERVER:
-    if DEBUG:
-        GOOGLE_CALLBACK_ADDRESS = "https://epay.pythonanywhere.com/accounts/google/login/callback/"
-    else:
-        GOOGLE_CALLBACK_ADDRESS = "https://epay.app/accounts/google/login/callback/"
-
+    GOOGLE_CALLBACK_ADDRESS = "https://exarthdev3.pythonanywhere.com/accounts/google/login/callback/"
     SITE_ID = 2
 else:
     GOOGLE_CALLBACK_ADDRESS = "http://127.0.0.1:8000/accounts/google/login/callback/"
@@ -54,6 +50,7 @@ INSTALLED_APPS = [
 
     'src.portals.admins',
     'src.portals.instructor',
+    'src.portals.student',
 
     # END
 
@@ -184,4 +181,15 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 OLD_PASSWORD_FIELD_ENABLED = True
 LOGOUT_ON_PASSWORD_CHANGE = False
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
+
+""" EMAIL AND ALL AUTH ------------------------------------------------------------------------------------------- """
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'donald.duck0762@gmail.com'
+EMAIL_HOST_PASSWORD = 'jivcvsjgjgkadtnk'
+EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL = 'ELearn <support@elearn.com>'

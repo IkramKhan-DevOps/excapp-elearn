@@ -17,10 +17,11 @@ class CrossAuthView(View):
 
     def get(self, request):
         if request.user.is_superuser:
-            # return redirect('admins:dashboard')
+            return redirect('admins:dashboard')
+        elif request.user.is_instructor:
             return redirect('instructor:dashboard')
         else:
-            return redirect('instructor:dashboard')
+            return redirect('student:dashboard')
 
 
 @method_decorator(login_required, name='dispatch')

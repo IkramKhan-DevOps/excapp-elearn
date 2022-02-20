@@ -32,9 +32,9 @@ class CourseDetailView(DetailView):
 
 class CourseCreateView(CreateView):
     model = Course
-    fields = ['name', 'section', 'subject', 'instructor', 'room', 'description']
+    fields = ['name', 'section', 'subject', 'student', 'room', 'description']
 
 
 class CourseUpdateView(UpdateView):
     model = Course
-    fields = ['name', 'section', 'subject', 'instructor', 'room', 'description']
+    fields = ['name', 'section', 'subject', 'student', 'room', 'description']
