@@ -1,6 +1,5 @@
 from django.db import models
 from django.urls import reverse
-
 from src.accounts.models import User
 
 
@@ -10,7 +9,7 @@ class Course(models.Model):
     subject = models.CharField(max_length=255, null=False, blank=False)
     room = models.CharField(max_length=255, null=False, blank=False, help_text="batch name/number or room")
     instructor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='student', blank=True)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     students = models.ManyToManyField(User, through='Enroll', related_name='students')
 
     is_paid = models.BooleanField(default=False, help_text="If student paid for the course please check this.")
@@ -28,9 +27,10 @@ class Course(models.Model):
 
 
 class Enroll(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users')
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='courses')
-    allowed_in_course = models.BooleanField(default=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='course')
+    is_active = models.BooleanField(default=True)
+    is_banned = models.BooleanField(default=False)
 
     created_on = models.DateTimeField(auto_now_add=True)
 

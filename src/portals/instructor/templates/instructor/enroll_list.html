@@ -1,0 +1,168 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block base_title %}
+    courses
+{% endblock %}
+
+
+{% block content %}
+
+    {% if enroll_inactive %}
+        <div class="row mb-2">
+            <div class="col-lg-12">
+                <h4>Requests ({{ enroll_inactive.count }})</h4>
+                <hr>
+
+                <div class="table-responsive">
+                    <table class="table project-list-table table-nowrap table-centered table-borderless">
+                        <tbody>
+
+                        {% for object in enroll_inactive %}
+                            <tr>
+                                <td>
+                                    {% if object.user.profile_image %}
+                                        <img src="{{ object.user.profile_image.url }}" alt="" class="avatar-sm">
+                                    {% else %}
+                                        <img src="{% static 'core/images/no-user.png' %}" alt="" class="avatar-sm">
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <h5 class="text-truncate font-size-14 mb-0">
+                                        <a href="#" class="text-dark">
+                                            {% if object.user.first_name %}
+                                                {{ object.user.first_name }} {{ object.user.last_name }}<br>
+                                            {% else %}
+                                                None <br>
+                                            {% endif %}
+                                            <small>({{ object.user.username }})</small>
+                                        </a>
+                                    </h5>
+                                </td>
+                                <td>{{ object.user.email }}</td>
+                                <td>{{ object.user.phone_number }}</td>
+                                <td>
+                                    <h5 class="text-truncate font-size-14 mb-0">
+                                        Joined On<br>
+                                        <small>{{ object.created_on }}</small>
+                                    </h5>
+                                </td>
+                                <td><a href="#" class="text-success"><b><i class="fa fa-check"></i> Accept</b></a></td>
+                                <td><a href="#" class="text-danger"><b><i class="fa fa-times"></i> Decline</b></a></td>
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="row mb-5">
+        <div class="col-lg-12">
+            <h4>Active Members ({{ object_list.count }})</h4>
+            <hr>
+            {% if object_list %}
+                <div class="table-responsive">
+                    <table class="table project-list-table table-nowrap table-centered table-borderless">
+                        <tbody>
+
+                        {% for object in object_list %}
+                            <tr>
+                                <td>
+                                    {% if object.user.profile_image %}
+                                        <img src="{{ object.user.profile_image.url }}" alt="" class="avatar-sm">
+                                    {% else %}
+                                        <img src="{% static 'core/images/no-user.png' %}" alt="" class="avatar-sm">
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <h5 class="text-truncate font-size-14 mb-0">
+                                        <a href="#" class="text-dark">
+                                            {% if object.user.first_name %}
+                                                {{ object.user.first_name }} {{ object.user.last_name }}<br>
+                                            {% else %}
+                                                None <br>
+                                            {% endif %}
+                                            <small>({{ object.user.username }})</small>
+                                        </a>
+                                    </h5>
+                                </td>
+                                <td>{{ object.user.email }}</td>
+                                <td>{{ object.user.phone_number }}</td>
+                                <td>
+                                    <h5 class="text-truncate font-size-14 mb-0">
+                                        Joined On<br>
+                                        <small>{{ object.created_on }}</small>
+                                    </h5>
+                                </td>
+                                <td><a class="btn btn-sm btn-danger" href="#"><i class="fa fa-ban"></i> Ban</a></td>
+                            </tr>
+                        {% endfor %}
+
+
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <p class="text-danger mb-0">
+                    <b><i class="fa fa-exclamation-circle"></i> No active members found.</b>
+                </p>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if enroll_ban %}
+
+        <div class="row mb-5">
+            <div class="col-lg-12">
+                <h4>Banned Members ({{ enroll_ban.count }})</h4>
+                <hr>
+                <div class="table-responsive">
+                    <table class="table project-list-table table-nowrap table-centered table-borderless">
+                        <tbody>
+
+                        {% for object in enroll_ban %}
+                            <tr>
+                                <td>
+                                    {% if object.user.profile_image %}
+                                        <img src="{{ object.user.profile_image.url }}" alt="" class="avatar-sm">
+                                    {% else %}
+                                        <img src="{% static 'core/images/no-user.png' %}" alt="" class="avatar-sm">
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <h5 class="text-truncate font-size-14 mb-0">
+                                        <a href="#" class="text-dark">
+                                            {% if object.user.first_name %}
+                                                {{ object.user.first_name }} {{ object.user.last_name }}<br>
+                                            {% else %}
+                                                None <br>
+                                            {% endif %}
+                                            <small>({{ object.user.username }})</small>
+                                        </a>
+                                    </h5>
+                                </td>
+                                <td>{{ object.user.email }}</td>
+                                <td>{{ object.user.phone_number }}</td>
+                                <td>
+                                    <h5 class="text-truncate font-size-14 mb-0">
+                                        Joined On<br>
+                                        <small>{{ object.created_on }}</small>
+                                    </h5>
+                                </td>
+                                <td><a class="btn btn-sm btn-success" href="#"><i class="fa fa-ban"></i> Un Ban</a></td>
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    {% endif %}
+
+{% endblock %}
+

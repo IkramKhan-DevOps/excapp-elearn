@@ -41,7 +41,7 @@ class UserCustomAdmin(admin.ModelAdmin):
         (None, {'fields': ('username', 'password')}),
         ('Personal info', {'fields': ('profile_image', 'first_name', 'last_name', 'email', 'phone_number')}),
         ('Permissions', {
-            'fields': ('is_active', 'is_staff', 'is_superuser', 'is_customer', 'groups', 'user_permissions'),
+            'fields': ('is_active', 'is_staff', 'is_superuser', 'is_student', 'is_instructor', 'groups', 'user_permissions'),
         }),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
     )

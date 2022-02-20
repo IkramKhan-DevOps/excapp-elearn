@@ -16,61 +16,172 @@
 {% block content %}
 
     <div class="row">
-
-        {# NEW FEED #}
-        <div class="col-2">
-
-            <div class="card p-0">
-                <div class="card-header p-0">
-                    <div class="product-img position-relative">
-                        <img src="{% static "portals/images/classimage.jpg" %}" alt=""
-                             class="img-fluid mx-auto d-block">
-                    </div>
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-white border-bottom">
+                    <p class="card-title mb-0">
+                        CourseName
+                    </p>
                 </div>
                 <div class="card-body">
-
-                    <div class=" text-center">
-                        <h5 class="mb-1 text-truncate">
-                            <a href="#" class="text-dark"><b>Class Name</b></a>
-                        </h5>
-                        <div class="mt-2 text-left">
-                            <div>
-                                <label class="small text-muted">Class Code</label>
-                                <input class="form-control form-control-sm" type="text" disabled value="XYSD23">
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="card-footer border-top bg-white">
                     <div class="row text-center">
                         <div class="col">
-                            <h4>
-                                <a href="#"><i class="fa fa-book"></i></a>
-                            </h4>
+                            <div>
+                                <h1 class=""><i class="fa fa-clipboard-list"></i></h1>
+                                <h6 class="mb-0">Course</h6>
+                                <a href="#"><b>View</b><small>( 10 )</small></a>
+                            </div>
                         </div>
                         <div class="col">
-                            <h4>
-                                <a href="#"><i class="fa fa-list"></i></a>
-                            </h4>
+                            <div>
+                                <h1 class=""><i class="fa fa-book"></i></h1>
+                                <h6 class="mb-0">Assignments</h6>
+                                <a href="#"><b>View</b><small>( 10 )</small></a>
+                            </div>
                         </div>
                         <div class="col">
-                            <h4>
-                                <a href="#"><i class="fa fa-clock"></i></a>
-                            </h4>
+                            <div>
+                                <h1 class=""><i class="fa fa-clock"></i></h1>
+                                <h6 class="mb-0">Quizzes</h6>
+                                <a href="#"><b>View</b><small>( 10 )</small></a>
+                            </div>
                         </div>
                         <div class="col">
-                            <h4>
-                                <a href="#"><i class="fa fa-chart-line"></i></a>
-                            </h4>
+                            <div>
+                                <h1 class=""><i class="fa fa-poll"></i></h1>
+                                <h6 class="mb-0">Polls</h6>
+                                <a href="#"><b>View</b><small>( 10 )</small></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
+    <div class="row">
+        {# LEFT #}
+        <div class="col-9">
+
+            {# NEW FEED INPUT #}
+            <div>
+                <textarea id="add-content" class="form-control form-control-lg"
+                          placeholder="Have something in mind"></textarea>
+            </div>
+
+            {# NEWS FEED LIST #}
+            <div id="content" class="mt-4">
+
+                {% for foo in '12'|make_list %}
+                    <div class="mb-3 p-3 rounded" style="border: 1px solid lightgray">
+                        <a href="#" class="text-secondary">
+
+                            <div class="d-flex flex-row">
+                                <div class="p-2">
+                                    <h1 class="mb-0 text-success"><i class="fa fa-clipboard"></i></h1>
+                                </div>
+                                <div class="p-2">
+                                    <h5 class="mb-0"><b>Ikram Khan </b> has posted an assignment <b>How to Run
+                                        Programs</b></h5>
+                                    <small>24th January, 2022</small>
+                                </div>
+                            </div>
+
+                        </a>
+                    </div>
+                {% endfor %}
+
+                <div class="mb-3 p-3 rounded" style="border: 1px solid lightgray">
+                    <a href="#" class="text-secondary">
+
+                        <div class="d-flex flex-row">
+                            <div class="p-2">
+                                <h1 class="mb-0 text-success"><i class="fa fa-poll"></i></h1>
+                            </div>
+                            <div class="p-2">
+                                <h5 class="mb-0"><b>Ikram Khan </b> has posted an Poll <b>who is Best?</b>
+                                </h5>
+                                <small>24th January, 2022</small>
+                            </div>
+                        </div>
+
+                    </a>
+                </div>
+
+                <div class="mb-3 p-3 rounded" style="border: 1px solid lightgray">
+                    <a href="#" class="text-secondary">
+
+                        <div class="d-flex flex-row">
+                            <div class="p-2">
+                                <h1 class="mb-0 text-success"><i class="fa fa-clock fa fa-spin"></i></h1>
+                            </div>
+                            <div class="p-2">
+                                <h5 class="mb-0"><b>Ikram Khan </b> has posted an Quiz <b>Solve the Following.</b>
+                                </h5>
+                                <small>24th January, 2022</small>
+                            </div>
+                        </div>
+
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        {# RIGHT #}
+        <div class="col-3">
+
+            {# JOIN #}
             <div class="card">
                 <div class="card-header bg-white border-bottom">
-                    <p class="mb-0 card-title"><b>Upcoming</b></p>
+                    <p class="mb-0 card-title"><b>How to Join</b></p>
+                </div>
+                <div class="card-body">
+                    <p class="text-secondary">
+                        Provide this code to your students and ask them to join.
+                    </p>
+                    <p class="card-title">Join Code</p>
+                    <div class="form-row">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <input type="text" class="form-control form-control-lg" value="23679237" disabled>
+                                <div class="input-group-append">
+                                    <a class="btn btn-lg btn-light"><i class="fa fa-copy"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary mt-3"><i class="fa fa-plus"></i> Generate New</button>
+                    <a class="btn btn-light mt-3"><i class="fa fa-share"></i> Share</a>
+                </div>
+            </div>
+
+            {# ENROLLED #}
+            <div class="card">
+                <div class="card-header bg-white border-bottom">
+                    <p class="mb-0 card-title"><b>Enrolled Students</b></p>
+                </div>
+                <div class="card-body">
+                    {% for foo in '123456789'|make_list %}
+                        <img class="rounded-circle header-profile-user"
+                             src="{% static 'core/images/no-user.png' %}">
+                    {% endfor %}
+                    <br><br>
+                    <a href="{% url 'instructor:enroll-list' object.pk %}"><b>View All</b></a> | <a href="#"
+                                                                                                    class="btn btn-sm btn-primary"><b>Add
+                    New</b></a>
+
+
+                </div>
+                <div class="btn ">
+
+                </div>
+            </div>
+
+            {# ASSIGNMENTS #}
+            <div class="card">
+                <div class="card-header bg-white border-bottom">
+                    <p class="mb-0 card-title"><b>Upcoming Events</b></p>
                 </div>
                 <div class="card-body">
                     {% for foo in '1234'|make_list %}
@@ -79,45 +190,6 @@
                             <small class="text-muted">12th, January, 2022</small>
                         </div>
                     {% endfor %}
-                </div>
-            </div>
-
-        </div>
-
-        {# NEW FEED #}
-        <div class="col-8">
-
-            {# NEW FEED INPUT #}
-            <div>
-                <textarea id="add-content" class="form-control form-control-lg"
-                          placeholder="Have something in mind"></textarea>
-            </div>
-
-            {# NEWS FEED #}
-            <div id="content" class="mt-4">
-
-            </div>
-        </div>
-
-        {# USERS #}
-        <div class="col-2">
-            <div class="card">
-                <div class="card-header bg-white border-bottom">
-                    <p class="mb-0 card-title"><b>Enrolled</b></p>
-                </div>
-                <div class="card-body">
-                    {#                    {% for foo in '1234'|make_list %}#}
-                    {#                        <p class="mb-0"><img class="rounded-circle header-profile-user"#}
-                    {#                                         src="{% static 'core/images/no-user.png' %}"> Full Name</p>#}
-                    {#                    {% endfor %}#}
-                    {% for foo in '1234'|make_list %}
-                        <img class="rounded-circle header-profile-user"
-                             src="{% static 'core/images/no-user.png' %}">
-                    {% endfor %}
-
-                </div>
-                <div class="btn ">
-
                 </div>
             </div>
         </div>
