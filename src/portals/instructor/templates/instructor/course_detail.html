@@ -36,7 +36,7 @@
                             <div>
                                 <h1 class=""><i class="fa fa-book"></i></h1>
                                 <h6 class="mb-0">Assignments</h6>
-                                <a href="#"><b>View</b><small>( {{ assignments_count }} )</small></a>
+                                <a href="{% url 'instructor:assigment-list' object.pk %}"><b>View</b><small>( {{ assignments_count }} )</small></a>
                             </div>
                         </div>
                         <div class="col">

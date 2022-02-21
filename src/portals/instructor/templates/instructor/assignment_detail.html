@@ -1,0 +1,72 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block base_title %}
+    {{ object.name }}
+{% endblock %}
+
+
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-white border-bottom">
+                    <div class="row">
+                        <div class="col-10">
+                            <p class="mb-0 card-title">Assignment Attachments</p>
+                        </div>
+                        <div class="col-2 text-right">
+
+                            <div class="dropdown show">
+                                <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown"
+                                   aria-expanded="true">
+                                    <i class="mdi mdi-dots-horizontal font-size-18"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right" x-placement="bottom-end"
+                                    style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-160px, 25px, 0px);"
+                                    x-out-of-boundaries="">
+                                    <li>
+                                        <a href="{% url 'instructor:assigment-update' assignment.course.pk assignment.pk %}"
+                                           class="dropdown-item">
+                                            <i class="mdi mdi-pencil font-size-16 text-success mr-1"></i>
+                                            Edit
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'instructor:assigment-delete' assignment.course.pk assignment.pk %}"
+                                           class="dropdown-item">
+                                            <i class="mdi mdi-trash-can font-size-16 text-danger mr-1"></i> Delete
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-white border-bottom">
+                    <p class="mb-0 card-title">Assignment Attachments</p>
+                </div>
+                <div class="card-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

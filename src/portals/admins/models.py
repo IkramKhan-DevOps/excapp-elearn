@@ -1,11 +1,20 @@
+import datetime
 import uuid
 
+from ckeditor.fields import RichTextField
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.urls import reverse
+from django_resized import ResizedImageField
+
 from src.accounts.models import User
 
 
 class Course(models.Model):
+    thumbnail = ResizedImageField(
+        upload_to='instructor/images/courses/', null=True, blank=True, size=[600, 300], quality=75, force_format='PNG',
+        help_text='size of logo must be 100*100 and format must be png image file', crop=['middle', 'center']
+    )
     name = models.CharField(max_length=255, null=False, blank=False)
     section = models.CharField(max_length=255, null=False, blank=False)
     subject = models.CharField(max_length=255, null=False, blank=False)
@@ -45,3 +54,35 @@ class Enroll(models.Model):
 
     def __str__(self):
         return f"{self.user.username} in {self.course.name}"
+
+
+class Assignment(models.Model):
+    name = models.CharField(max_length=255)
+    description = RichTextField(max_length=255)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='course_assignment')
+
+    is_active = models.BooleanField(default=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+    expires_on = models.DateTimeField()
+
+    class Meta:
+        verbose_name_plural = 'Assignments'
+        ordering = ['-expires_on']
+
+    def __str__(self):
+        return self.name
+
+
+class AssignmentContent(models.Model):
+    url = models.URLField()
+    assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
+
+    is_active = models.BooleanField(default=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = 'Assignment Contents'
+        ordering = ['created_on', '-assignment']
+
+    def __str__(self):
+        return self.url
