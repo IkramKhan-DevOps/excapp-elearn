@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+
+{% block base_title %}
+    Delete {{ object }}
+{% endblock %}
+
+{% block page_heading %}
+    Delete {{ object }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <p class="mb-2">Are you sure you want to delete <b>"{{ object }}"</b>?</p>
+                        <input type="submit" class="btn btn-danger" value="Confirm">
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

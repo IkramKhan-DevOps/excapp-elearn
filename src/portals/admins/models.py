@@ -1,3 +1,5 @@
+import uuid
+
 from django.db import models
 from django.urls import reverse
 from src.accounts.models import User
@@ -9,6 +11,9 @@ class Course(models.Model):
     subject = models.CharField(max_length=255, null=False, blank=False)
     room = models.CharField(max_length=255, null=False, blank=False, help_text="batch name/number or room")
     instructor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='student', blank=True)
+    code = models.UUIDField(
+        default=uuid.uuid4, editable=False,
+    )
     description = models.TextField(null=True, blank=True)
     students = models.ManyToManyField(User, through='Enroll', related_name='students')
 

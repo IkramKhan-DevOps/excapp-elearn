@@ -20,7 +20,7 @@
             <div class="card">
                 <div class="card-header bg-white border-bottom">
                     <p class="card-title mb-0">
-                        CourseName
+                        {{ object }}
                     </p>
                 </div>
                 <div class="card-body">
@@ -29,28 +29,28 @@
                             <div>
                                 <h1 class=""><i class="fa fa-clipboard-list"></i></h1>
                                 <h6 class="mb-0">Course</h6>
-                                <a href="#"><b>View</b><small>( 10 )</small></a>
+                                <a href="#"><b>View</b><small>( {{ course_count }} )</small></a>
                             </div>
                         </div>
                         <div class="col">
                             <div>
                                 <h1 class=""><i class="fa fa-book"></i></h1>
                                 <h6 class="mb-0">Assignments</h6>
-                                <a href="#"><b>View</b><small>( 10 )</small></a>
+                                <a href="#"><b>View</b><small>( {{ assignments_count }} )</small></a>
                             </div>
                         </div>
                         <div class="col">
                             <div>
                                 <h1 class=""><i class="fa fa-clock"></i></h1>
                                 <h6 class="mb-0">Quizzes</h6>
-                                <a href="#"><b>View</b><small>( 10 )</small></a>
+                                <a href="#"><b>View</b><small>( {{ quizzes_count }} )</small></a>
                             </div>
                         </div>
                         <div class="col">
                             <div>
                                 <h1 class=""><i class="fa fa-poll"></i></h1>
                                 <h6 class="mb-0">Polls</h6>
-                                <a href="#"><b>View</b><small>( 10 )</small></a>
+                                <a href="#"><b>View</b><small>( {{ polls_count }} )</small></a>
                             </div>
                         </div>
                     </div>
@@ -144,14 +144,16 @@
                     <div class="form-row">
                         <div class="col-12">
                             <div class="input-group">
-                                <input type="text" class="form-control form-control-lg" value="23679237" disabled>
+                                <input type="text" class="form-control form-control-lg" value="{{ object.code }}"
+                                       disabled>
                                 <div class="input-group-append">
                                     <a class="btn btn-lg btn-light"><i class="fa fa-copy"></i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-primary mt-3"><i class="fa fa-plus"></i> Generate New</button>
+                    <a class="btn btn-primary mt-3" href="{% url 'instructor:course-code-change' object.pk %}"><i
+                            class="fa fa-plus"></i> Generate New</a>
                     <a class="btn btn-light mt-3"><i class="fa fa-share"></i> Share</a>
                 </div>
             </div>
@@ -162,18 +164,20 @@
                     <p class="mb-0 card-title"><b>Enrolled Students</b></p>
                 </div>
                 <div class="card-body">
-                    {% for foo in '123456789'|make_list %}
-                        <img class="rounded-circle header-profile-user"
-                             src="{% static 'core/images/no-user.png' %}">
+                    {% for student in students %}
+                        {% if student.profile_image %}
+                            <img class="rounded-circle header-profile-user" src="{{ student.profile_image.url }}"
+                                 data-toggle="tooltip" data-placement="top"
+                                 title="" data-original-title="{{ student }}">
+                        {% else %}
+                            <img class="rounded-circle header-profile-user" src="{% static 'core/images/no-user.png' %}"
+                                 data-toggle="tooltip" data-placement="top"
+                                 title="" data-original-title="{{ student }}">
+                        {% endif %}
                     {% endfor %}
                     <br><br>
-                    <a href="{% url 'instructor:enroll-list' object.pk %}"><b>View All</b></a> | <a href="#"
-                                                                                                    class="btn btn-sm btn-primary"><b>Add
-                    New</b></a>
-
-
-                </div>
-                <div class="btn ">
+                    <a href="{% url 'instructor:enroll-list' object.pk %}"><b>View All</b></a> |
+                    <a href="#" class="btn btn-sm btn-primary"><b>Add New</b></a>
 
                 </div>
             </div>
@@ -190,6 +194,22 @@
                             <small class="text-muted">12th, January, 2022</small>
                         </div>
                     {% endfor %}
+                </div>
+            </div>
+
+            {# ASSIGNMENTS #}
+            <div class="card">
+                <div class="card-header bg-white border-bottom">
+                    <p class="mb-0 card-title text-danger"><b>Security</b></p>
+                </div>
+                <div class="card-body">
+
+
+                    <p class="text-danger">This course will be permanently delete</p>
+                    <a href="{% url 'instructor:course-delete' object.pk %}"
+                       type="submit" class="btn btn-danger">
+                        <b><i class="fa fa-trash"></i> Delete</b>
+                    </a>
                 </div>
             </div>
         </div>
